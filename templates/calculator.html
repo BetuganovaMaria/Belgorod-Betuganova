@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <title> {{title}} </title>
+</head>
+<center><h1> {{title}} </h1></center>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.first.label }}<br>
+        {{ form.first(class="form-control") }}<br>
+        {% for error in form.first.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.sign.label }}<br>
+        {{ form.sign(class="form-control") }}<br>
+        {% for error in form.sign.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.second.label }}<br>
+        {{ form.second(class="form-control") }}<br>
+        {% for error in form.second.errors %}
+            <p content="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+    {{result}}
+</form>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <title> {{title}} </title>
+</head>
+<center><h1> {{title}} </h1></center>
+{% if current_user.is_authenticated %}
+    </br>
+    <center><a href="add_tasks" class="btn btn-info">Добавить задачу</a></center>
+    </br>
+    {% for item in tasks%}
+        {% if current_user == item.user %}
+            <div class="col-md6 border rounded">
+                <h2>{{item.title}}</h2>
+                <h4>
+                    {{item.content}}
+                </h4>
+                <div>
+                    Автор - {{item.user.name}}
+                </div>
+                <div>
+                    О себе - {{item.user.about}}
+                </div>
+                <div>
+                    <a href="/add_tasks/{{ item.id }}" class="btn btn-warning">
+                        Изменить
+                    </a>
+                    <a href="/tasks_delete/{{ item.id }}" class="btn btn-danger">
+                        Удалить
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+{% endblock %}
